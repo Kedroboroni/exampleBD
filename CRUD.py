@@ -1,6 +1,12 @@
 from sqlalchemy.orm import Session
 from model import GeneralTabel, Object, City, Users, ConfirmationTabel
-from typing import List, Optional
+from typing import List, Optional, Dict, Any
+from sqlalchemy import func, select
+import numpy as np
+
+
+
+
 
 #CRUD для generalTabel:
 def create_generalTabel(db: Session, general_tabel: GeneralTabel) -> GeneralTabel:
@@ -31,6 +37,22 @@ def delete_generalTabel(db: Session, tabel_id: int) -> bool:
         db.commit()
         return True
     return False
+
+
+#Фильтр по совпадениям
+def filter_generalTabel_by_partial_word(db: Session, column_name: str, word: str) -> List[GeneralTabel]:
+    return db.query(GeneralTabel).filter(func.lower(getattr(GeneralTabel, column_name)).contains(word.lower())).all()
+
+
+#Фильтр по точному слову
+def filter_generalTabel_by_exact_word(db: Session, column_name: str, word: str) -> List[GeneralTabel]:
+    return db.query(GeneralTabel).filter(getattr(GeneralTabel, column_name) == word).all()
+
+
+def get_generalTabel_columns(db: Session, tabel_id: int, columns: List[str]) -> Optional[Dict[str, Any]]:
+    query = select(*[getattr(GeneralTabel, col) for col in columns]).where(GeneralTabel.id == tabel_id)
+    result = db.execute(query).first()
+    return result._asdict() if result else None
 
 
 #CRUD для object:
@@ -155,3 +177,24 @@ def delete_confirmationTabel(db: Session, tabel_id: int) -> bool:
         db.commit()
         return True
     return False
+
+#Достать колонки из таблицы (для всех таблиц)
+def get_columns_by_tabel(db: Session, tabel, columns: List[str]) -> Optional[List[Any]]:
+    query = select(*[getattr(tabel, col) for col in columns])
+    result = db.execute(query).all()
+    return result if result else None
+
+
+def filter_tabel_by_exact_word(db: Session, tabel, column_name: str, word: str) -> List[GeneralTabel]:
+    return db.query(tabel).filter(getattr(tabel, column_name) == word).all()
+
+#Поиск объекта по названию в отфильтрованном результате
+def find_objects_by_name_in_filtered_results(db: Session, column: str, word: str, nameObject: str) -> List[GeneralTabel]:
+    return db.query(GeneralTabel).filter(
+        getattr(GeneralTabel, column) == word,
+        GeneralTabel.nameObject == nameObject
+    ).all()
+
+
+
+
