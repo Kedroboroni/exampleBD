@@ -221,7 +221,7 @@ def delete_confirmationTabel(db: Session, tabel_id: int) -> bool:
         return True
     return False
 
-#Достать колонки из таблицы (для всех таблиц)
+
 def get_columns_by_tabel(db: Session, tabel, columns: List[str]) -> Optional[List[Any]]:
 
     """Возвращает таблицу с колонками перечисленными в параметре columns: <list>"""
@@ -235,7 +235,7 @@ def filter_tabel_by_exact_word(db: Session, tabel, columnName: str, word: str) -
     """Возвращает отфильтрованную таблицу из колонки <columnName> по слову <word>"""
     return db.query(tabel).filter(getattr(tabel, columnName) == word).all()
 
-#Поиск объекта по названию в отфильтрованном результате
+
 def find_objects_by_name_in_filtered_results(db: Session, column: str, word: str, nameObject: str) -> List[GeneralTabel]:
 
     """Возвращает объект по названию в отфильтрованном результате"""
