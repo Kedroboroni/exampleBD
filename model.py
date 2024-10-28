@@ -33,8 +33,8 @@ class GeneralTabel(Base):
         return f"""generalTabel(ИмяСпутника = {self.nameSatellite}, Дата = {self.date}, 
                     Начало = {self.startCine}, Конец = {self.endCine}, Длительность = {self.countCine}, 
                     Широта = {self.latitude}, Долгота = {self.longitude}, Страна = {self.city},
-                    Регион = {self.region}, Имя объекта = {self.nameObject},
-                    )""".replace('\n', ' ').replace('                    ', ' ')
+                    Регион = {self.region}, Имя объекта = {self.nameObject}
+                    )""".replace('\n', ' ').replace('                    ', '').replace(')',')\n')
     
 
 class Object(Base):
