@@ -1,10 +1,9 @@
 """ Файл в котором  созданы кастомные виджеты на основе родителей PySide6 """
 
 
-from PySide6.QtWidgets import QPushButton, QLabel,  QLineEdit, QGroupBox, QWidget, QTabWidget, QVBoxLayout, QHBoxLayout
+from PySide6.QtWidgets import QPushButton, QLabel,  QLineEdit, QGroupBox, QWidget
 from PySide6.QtGui import QMouseEvent
 from PySide6.QtCore import QRect
-from typing import List
         
 
 class Lable(QLabel):
@@ -13,11 +12,11 @@ class Lable(QLabel):
         super().__init__(place)
         self.mouseX = mouseX
         self.mouseY = mouseY
-        """self.setStyleSheet("background-color:qconicalgradient(cx:0, cy:0, angle:135, stop:0.0454545 rgba(188, 55, 255, 144), stop:0.164773 rgba(80, 4, 197, 146), stop:0.272727 rgba(75, 46, 213, 162), stop:0.369318 rgba(162, 36, 251, 175), stop:0.494318 rgba(185, 98, 237, 175), stop:0.590909 rgba(231, 69, 222, 130), stop:0.698864 rgba(209, 36, 185, 188), stop:0.789773 rgba(189, 0, 122, 140), stop:0.897727 rgba(107, 10, 204, 153), stop:1 rgba(100, 0, 219, 157));\n"
+        self.setStyleSheet("background-color:qconicalgradient(cx:0, cy:0, angle:135, stop:0.0454545 rgba(188, 55, 255, 144), stop:0.164773 rgba(80, 4, 197, 146), stop:0.272727 rgba(75, 46, 213, 162), stop:0.369318 rgba(162, 36, 251, 175), stop:0.494318 rgba(185, 98, 237, 175), stop:0.590909 rgba(231, 69, 222, 130), stop:0.698864 rgba(209, 36, 185, 188), stop:0.789773 rgba(189, 0, 122, 140), stop:0.897727 rgba(107, 10, 204, 153), stop:1 rgba(100, 0, 219, 157));\n"
                                 "\n"
                                 "font: 10pt \"Noto Serif\";\n"
                                 "border-radius:7px;\n"
-                                "border:1px solid rgba(255,255,255,40);")"""
+                                "border:1px solid rgba(255,255,255,40);")
         self.setMouseTracking(True)
         self.setScaledContents(True)
         if x and y and w and h:
@@ -32,13 +31,12 @@ class Lable(QLabel):
             self.mouseY.setText("y = {0}".format(self.Y))
         
 
-#!!! Определить новые кнопки для размещения вsidebar, tab, workSpace
 class Button(QPushButton):
     """Формат вызова (self, место по x, место по y, ширина, высота)"""
-    def __init__(self, place = None, text = "YouNeedInstallTTextThisButton", x = None, y = None, w = None, h = None):
+    def __init__(self, place, text = "YouNeedInstallTTextThisButton", x = None, y = None, w = None, h = None):
         super().__init__(place)
         self.setText(text)
-        """self.setStyleSheet("QPushButton {\n"
+        self.setStyleSheet("QPushButton {\n"
                             "background-color: qconicalgradient(cx:0, cy:0, angle:135, stop:0.0454545 rgba(188, 55, 255, 144), stop:0.164773 rgba(80, 4, 197, 146), stop:0.272727 rgba(75, 46, 213, 162), stop:0.369318 rgba(162, 36, 251, 175), stop:0.494318 rgba(185, 98, 237, 175), stop:0.590909 rgba(231, 69, 222, 130), stop:0.698864 rgba(209, 36, 185, 188), stop:0.789773 rgba(189, 0, 122, 140), stop:0.897727 rgba(107, 10, 204, 153), stop:1 rgba(100, 0, 219, 157));\n"
                             "font: 10pt \"Noto Serif\";\n"
                             "border-radius:7px;\n"
@@ -55,7 +53,7 @@ class Button(QPushButton):
                             "font: 10pt \"Noto Serif\";\n"
                             "border-radius:7px;\n"
                             "border:1px solid rgba(255,255,255,40);\n"
-                            "}")"""
+                            "}")
         if x and y and w and h:
             self.setGeometry(QRect(x, y, w, h))
 
@@ -64,8 +62,8 @@ class GroupBox(QGroupBox):
     """Формат вызова (self, место по x, место по y, ширина, высота)"""
     def __init__(self, place, x = None, y = None, w = None, h = None):
         super().__init__(place)
-        """self.setStyleSheet("border-radius:7px;\n"
-                            "border:1px solid rgba(255,255,255,40)")"""
+        self.setStyleSheet("border-radius:7px;\n"
+                            "border:1px solid rgba(255,255,255,40)")
         if x and y and w and h:
             self.setGeometry(QRect(x, y, w, h))
 
@@ -74,42 +72,17 @@ class LineEdit(QLineEdit):
     """Формат вызова (self, место по x, место по y, ширина, высота)"""
     def __init__(self, place,  x = None, y = None, w = None, h = None):
         super().__init__(place)
-        """self.setStyleSheet("background-color:qconicalgradient(cx:0, cy:0, angle:135, stop:0.0454545 rgba(188, 55, 255, 144), stop:0.164773 rgba(80, 4, 197, 146), stop:0.272727 rgba(75, 46, 213, 162), stop:0.369318 rgba(162, 36, 251, 175), stop:0.494318 rgba(185, 98, 237, 175), stop:0.590909 rgba(231, 69, 222, 130), stop:0.698864 rgba(209, 36, 185, 188), stop:0.789773 rgba(189, 0, 122, 140), stop:0.897727 rgba(107, 10, 204, 153), stop:1 rgba(100, 0, 219, 157));\n"
+        self.setStyleSheet("background-color:qconicalgradient(cx:0, cy:0, angle:135, stop:0.0454545 rgba(188, 55, 255, 144), stop:0.164773 rgba(80, 4, 197, 146), stop:0.272727 rgba(75, 46, 213, 162), stop:0.369318 rgba(162, 36, 251, 175), stop:0.494318 rgba(185, 98, 237, 175), stop:0.590909 rgba(231, 69, 222, 130), stop:0.698864 rgba(209, 36, 185, 188), stop:0.789773 rgba(189, 0, 122, 140), stop:0.897727 rgba(107, 10, 204, 153), stop:1 rgba(100, 0, 219, 157));\n"
                             "font: 10pt \"Noto Serif\";\n"
                             "border-radius:7px;\n"
-                            "border:1px solid rgba(255,255,255,40);")"""
+                            "border:1px solid rgba(255,255,255,40);")
         if x and y and w and h:
             self.setGeometry(QRect(x, y, w, h))
 
 
-class centralWidget(QWidget):
-    def __init__(self, place = None):
+class Widget(QWidget):
+    def __init__(self):
         super().__init__()
-        self.setParent(place)
-        
-
-
-class sidebarWidget(QWidget):
-    def __init__(self, place = None):
-        super().__init__()
-        self.setParent(place)
-        self.setFixedWidth(100)
-        self.setStyleSheet("background-color: black;")
-
-
-class workSpaceWidget(QWidget):
-    def __init__(self, place = None):
-        super().__init__()
-        self.setParent(place)
-        self.setStyleSheet("background-color: gray;")
-
-
-class  TabWidget(QTabWidget):
-    def __init__(self, contents: List[QWidget], nameTabs: List[str]):
-        super().__init__(self)
-        for i, content in enumerate(content): #Создаем указанное количесвто вкладок с разным контентом (окнами)
-            self.addTab(content, nameTabs[i])
-
 
 
         
