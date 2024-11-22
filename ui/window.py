@@ -21,24 +21,53 @@ class MainWindow(QMainWindow):
     def mainWindow(self):
         """Размещаем свои виджеты"""
         self.centralWidget = centralWidget() #Создали центарльный виджет в котором будут располагаться другие виджеты
-        self.setCentralWidget(self.centralWidget) #Разместили центральныйтвиджет в главном окне
 
         self.centralGrid = GridLayout() #Сетка для размещения областей программы
         self.centralWidget.setLayout(self.centralGrid)
 
         self.sidebarWidget = sidebarWidget() #виджет в котором расположены кнопки боковой панели (для кастомного оформления)
-        self.centralGrid.addWidget(self.sidebarWidget)
+        self.workSpaceWidget = workSpaceWidget()
+        self.errorWidget = errorWidget()
 
-        self.sidebarLayout = VBoxLayout()
-        self.sidebarWidget.setLayout(self.sidebarLayout)
+        self.centralGrid.addWidget(self.sidebarWidget, 0, 0,  1, 1)
+        self.centralGrid.addWidget(self.workSpaceWidget, 0, 1, 1, 1)
+        self.centralGrid.addWidget(self.errorWidget, 1, 0, 1, 2)
 
-        btn1 = QPushButton("test")
-        btn2 = QPushButton("test")
-        btn3 = QPushButton("test")
+        self.sidebar = VBoxLayout()
+        self.workSpace = VBoxLayout()
+        self.error = VBoxLayout()
 
-        self.sidebarLayout.addWidget(btn1)
-        self.sidebarLayout.addWidget(btn2)
-        self.sidebarLayout.addWidget(btn3)
+        self.sidebarWidget.setLayout(self.sidebar)
+        self.workSpaceWidget.setLayout(self.workSpace)
+        self.errorWidget.setLayout(self.error)
+
+        btn11 = Button(text = "test")
+        btn12 = Button(text = "test")
+        btn13= Button(text = "test")
+        btn14= Button(text = "test")
+        self.sidebar.addWidget(btn11)
+        self.sidebar.addWidget(btn12)
+        self.sidebar.addWidget(btn13)
+        self.sidebar.addWidget(btn14)
+
+        btn2 = Button(text = "test")
+        self.workSpace.addWidget(btn2)
+        
+        btn3 = Button(text = "test")
+        self.error.addWidget(btn3)
+
+
+
+        
+
+        #self.sidebarWidget.set
+
+
+
+    def contentSidebar(self):
+
+        pass
+        
     
 
         

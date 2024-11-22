@@ -26,7 +26,6 @@ class MainWindow(QWidget):
         self.right_widget.addWidget(self.create_label_widget("Содержимое для кнопки 3333"))
         self.right_widget.addWidget(self.create_label_widget("Содержимое для кнопки 2"))
         self.right_widget.addWidget(self.create_label_widget("Содержимое для кнопки 3"))
-        
         self.right_widget.addWidget(self.create_label_widget("Содержимое для кнопки 5"))
 
         # Добавляем слои в основной макет

@@ -1,29 +1,31 @@
-from PySide6.QtWidgets import QPushButton, QApplication, QWidget, QVBoxLayout, QStyleOptionButton
+import sys, os
+sys.path.append(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
 from PySide6.QtGui import QIcon, QPixmap
-import sys
+from PySide6.QtCore import QSize
+from parent import sidebarButton
 
 
 
-class tabelButton(QPushButton):
+
+
+class tabelButton(sidebarButton):
 
     def __init__(self):
 
         super().__init__()
 
-        self.setFixedSize(50, 50)
-
-        icon_path = r"ui\buttons\tabelButton\tabel.png"
+        icon_path = r"ui\buttons\sidebarButtons\tabelButton\tabel.png"
         icon = QIcon(QPixmap(icon_path))
         self.setIcon(icon)
-
-        self.setIconSize(self.size())
-
-        
+        self.setIconSize(QSize(50, 50))
 
         
 
+        
 
 if __name__ == "__main__":
+
+    from PySide6.QtWidgets import QApplication, QWidget, QVBoxLayout
 
     app = QApplication(sys.argv)
     with open(r"ui\SpyBot.qss", "r") as file:
