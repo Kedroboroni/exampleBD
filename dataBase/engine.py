@@ -3,7 +3,7 @@ from datetime import datetime, date, time
 from sqlalchemy.orm import Session
 from model import GeneralTabel, Object, City
 from typing import List, Tuple, Dict
-from CRUD import create_generalTabel, create_object, create_city, find_objects_by_name_in_filtered_results
+from dataBase.CRUD import create_generalTabel, create_object, create_city, find_objects_by_name_in_filtered_results
 
 
 

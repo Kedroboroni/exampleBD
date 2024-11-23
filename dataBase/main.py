@@ -4,9 +4,9 @@ from model import Base
 import pandas as pd
 import numpy as np
 from engine import fill_generalTabel_from_numpy, query_to_numpy, count_repeat
-from CRUD import get_generalTabel, create_generalTabel, get_generalTabel_columns, filter_generalTabel_by_exact_word
-from CRUD import get_columns_by_tabel, filter_generalTabel_by_partial_word, filter_tabel_by_exact_word
-from CRUD import find_objects_by_name_in_filtered_results
+from dataBase.CRUD import get_generalTabel, create_generalTabel, get_generalTabel_columns, filter_generalTabel_by_exact_word
+from dataBase.CRUD import get_columns_by_tabel, filter_generalTabel_by_partial_word, filter_tabel_by_exact_word
+from dataBase.CRUD import find_objects_by_name_in_filtered_results
 from model import GeneralTabel, Object
 
 

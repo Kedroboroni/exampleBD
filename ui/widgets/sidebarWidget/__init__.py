@@ -21,25 +21,28 @@ class sidebarWidget(QWidget):
 
         layout = QVBoxLayout()
     
-        label = sidebarLabel()
+        self.label = sidebarLabel()
 
-        layout.addWidget(label)
+        layout.addWidget(self.label)
         layout.setContentsMargins(0, 0, 0, 0)
         self.setLayout(layout)
+
         
 
 if __name__ == '__main__':
 
     from PySide6.QtWidgets import QApplication, QWidget, QMainWindow, QHBoxLayout, QPushButton
     app = QApplication(sys.argv)
+
     with open(r"ui\SpyBot.qss", "r") as file:
             style = file.read()
-            app.setStyleSheet(style)  
+            app.setStyleSheet(style)
+
     window = QMainWindow()
     centralWidget = QWidget()
     window.setCentralWidget(centralWidget)
-    l = QHBoxLayout()
 
+    l = QHBoxLayout()
     l.setContentsMargins(0, 0, 0, 0)  
     l.setSpacing(0)
     centralWidget.setLayout(l)

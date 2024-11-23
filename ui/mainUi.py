@@ -1,8 +1,6 @@
 from PySide6.QtWidgets import QMainWindow, QHBoxLayout, QVBoxLayout, QWidget, QApplication
 from widgets import errorWidget,  sidebarWidget, workerSpaceWidget
-import tabWidget
 import sys
-
 
 
 class mainWindow(QMainWindow):
@@ -12,6 +10,7 @@ class mainWindow(QMainWindow):
         super().__init__()
         self.placment()
         self.app = QApplication.instance()
+        self.clickedOnSidebarButton()
 
 
     def placment(self):
@@ -30,13 +29,23 @@ class mainWindow(QMainWindow):
         layoutV = QVBoxLayout()
         layoutV.setContentsMargins(0, 0, 0, 0)
         layoutV.setSpacing(0)
-        layoutH.addLayout(layoutV, stretch = 5)
+        layoutH.addLayout(layoutV)
         
-        self.workerSpaceWidget = tabWidget.tabWidget(4)
+        self.workerSpaceWidget = workerSpaceWidget.workSpaceWidget()
         layoutV.addWidget(self.workerSpaceWidget)
 
         self.errorWidget = errorWidget.errorWidget()
         layoutV.addWidget(self.errorWidget)
+
+
+    def clickedOnSidebarButton(self):
+         
+        self.sidebarWidget.label.btnTabel.clicked.connect(lambda: self.workerSpaceWidget.setCurrentIndex(1))
+        self.sidebarWidget.label.btnAnalys.clicked.connect(lambda: self.workerSpaceWidget.setCurrentIndex(2))
+        self.sidebarWidget.label.btnDB.clicked.connect(lambda: self.workerSpaceWidget.setCurrentIndex(3))
+        self.sidebarWidget.label.btnUser.clicked.connect(lambda:  self.workerSpaceWidget.setCurrentIndex(4))
+        self.sidebarWidget.label.btnReport.clicked.connect(lambda:  self.workerSpaceWidget.setCurrentIndex(5))
+
 
 
 
@@ -45,9 +54,10 @@ if __name__ == "__main__":
     app = QApplication(sys.argv)
     with open(r"ui\SpyBot.qss", "r") as file:
             style = file.read()
-            print(style)
+            #print(style)
             app.setStyleSheet(style)
     window = mainWindow()
+    window.setMinimumSize(800, 700)
     window.show()
-    sys.exit(app.exec_())
+    sys.exit(app.exec())
     

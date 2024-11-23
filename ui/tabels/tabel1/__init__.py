@@ -4,11 +4,14 @@ import numpy as np
 
 class tabelPage1(QTableWidget):
 
-    def __init__(self):
+    def __init__(self, data = None):
 
         super().__init__()
+        self.data = data
         self.setings()
-        self.filling()
+        self.filling(self.data)
+        
+
 
     def setings(self):
 
@@ -16,10 +19,15 @@ class tabelPage1(QTableWidget):
         self.setColumnCount(20)
 
         self.setSizePolicy(QSizePolicy.Expanding, QSizePolicy.Expanding)
+        self.setEditTriggers(QTableWidget.NoEditTriggers)
+        self.setSelectionMode(QTableWidget.ContiguousSelection)
+        self.setFixedSize(500,400)
 
-    def filling(self):
 
-        data = np.random.randint(1, 100, size=(20, 10)) #Тут укажем БД
+    def filling(self, data = None):
+
+        if data is None:
+            data = np.random.randint(1, 100, size=(20, 10)) #Тут укажем БД
         """Тут мы укажем логику заполнения массива с БД"""
         for i in range(data.shape[0]):
             for j in range(data.shape[1]):
